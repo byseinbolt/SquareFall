@@ -7,7 +7,7 @@ public class BallBehaviour : MonoBehaviour
 {
    [SerializeField] private Transform _start;
    [SerializeField] private Transform _end;
-   [SerializeField] private float _speed;
+   [SerializeField] private float _speed = 1f;
 
    private float _currentTime;
    private bool _isMovingForward;
