@@ -16,6 +16,9 @@ namespace Game
         private GameObject _gameOverScreen;
 
         [SerializeField]
+        private SquareSpawner _squareSpawner;
+
+        [SerializeField]
         private float _delayBeforeShowGameOverScreen;
 
         private bool _isGameOver;
@@ -45,6 +48,7 @@ namespace Game
         public void OnPlayerDied()
         {
             _isGameOver = true;
+            _squareSpawner.enabled = false;
         }
 
         private void Update()

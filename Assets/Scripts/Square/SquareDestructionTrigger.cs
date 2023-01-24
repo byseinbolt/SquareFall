@@ -1,12 +1,18 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace Square
 {
     public class SquareDestructionTrigger : MonoBehaviour
     {
-        private void OnTriggerEnter2D(Collider2D col)
+        [SerializeField]
+        private float _scaleChangeDuration;
+        private void OnTriggerEnter2D(Collider2D otherCollider)
         {
-            Destroy(col.gameObject);
+            otherCollider.enabled = false;
+            otherCollider.transform.DOScale(Vector3.zero, _scaleChangeDuration)
+                .OnComplete(() => Destroy(otherCollider.gameObject));
+
         }
     }
 }

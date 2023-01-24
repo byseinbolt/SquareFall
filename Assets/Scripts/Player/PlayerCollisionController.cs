@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Game;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,14 +12,23 @@ namespace Player
         
         [SerializeField]
         private UnityEvent _playerDied;
+
+        [SerializeField]
+        private float _scaleChangeDuration;
         
         private void OnTriggerEnter2D(Collider2D other)
         {
             
             if (other.CompareTag(GlobalConstants.ALLY_TAG))
             {
-                _squareCollected.Invoke();
-                Destroy(other.gameObject);
+                other.enabled = false;
+                other.transform.DOScale(Vector3.zero, _scaleChangeDuration)
+                    .OnComplete(() =>
+                    {
+                        _squareCollected.Invoke();
+                        Destroy(other.gameObject);
+                    });
+                
             }
 
             if (other.CompareTag(GlobalConstants.ENEMY_TAG))

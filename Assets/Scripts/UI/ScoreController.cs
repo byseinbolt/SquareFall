@@ -8,8 +8,6 @@ namespace UI
 {
     public class ScoreController : MonoBehaviour
     {
-       
-        
         [SerializeField]
         private TextMeshProUGUI _scoreLabel;
 
@@ -17,7 +15,15 @@ namespace UI
         private int _scorePerSquare;
 
         [SerializeField]
+        private float _scaleChangeDuration;
+        
+        [SerializeField]
+        private float _scaleFactor;
+
+        [SerializeField]
         private AudioSource _bestScoreSound;
+        
+        
 
         private int _currentScore;
         private int _bestScore;
@@ -32,6 +38,8 @@ namespace UI
         {
             _currentScore += _scorePerSquare;
             _scoreLabel.text = _currentScore.ToString();
+            _scoreLabel.transform.DOPunchScale(Vector3.one * _scaleFactor, _scaleChangeDuration, 0)
+                .OnComplete(() => _scoreLabel.transform.DOScale(Vector3.one, 0));
         }
 
         public int GetBestScore()
