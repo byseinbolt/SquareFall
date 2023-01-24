@@ -1,8 +1,8 @@
-using System;
 using Game;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
+using DG.Tweening;
 
 namespace UI
 {
