@@ -1,9 +1,14 @@
 using JetBrains.Annotations;
+using Square;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Game
 {
+    public class MagicBoosts : MonoBehaviour
+    {
+        
+    }
     public class GameController : MonoBehaviour
     {
         [SerializeField]

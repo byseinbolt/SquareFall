@@ -3,7 +3,6 @@ using UnityEngine.Events;
 
 namespace Player
 {
-    
     public class PlayerInput : MonoBehaviour
     {
         [SerializeField]
@@ -11,7 +10,7 @@ namespace Player
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
                _directionChanged.Invoke();
             }

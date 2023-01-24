@@ -19,6 +19,11 @@ namespace Square
         {
             _direction = direction;
         }
+
+        public void SetSpeed(float speed)
+        {
+            _speed = speed;
+        }
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
@@ -35,7 +40,6 @@ namespace Square
         {
             var randomMultiplier = Random.Range(0, 2);
             return randomMultiplier == 1 ? 1 : -1;
-
         }
     }
 }
