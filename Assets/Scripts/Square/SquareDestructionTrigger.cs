@@ -12,7 +12,6 @@ namespace Square
             otherCollider.enabled = false;
             otherCollider.transform.DOScale(Vector3.zero, _scaleChangeDuration)
                 .OnComplete(() => Destroy(otherCollider.gameObject));
-
         }
     }
 }

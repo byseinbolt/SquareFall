@@ -5,10 +5,6 @@ using UnityEngine.SceneManagement;
 
 namespace Game
 {
-    public class MagicBoosts : MonoBehaviour
-    {
-        
-    }
     public class GameController : MonoBehaviour
     {
         [SerializeField]
@@ -30,6 +26,8 @@ namespace Game
 
         private void Awake()
         {
+            Application.targetFrameRate = 60;
+            
             _gameStartScreen.SetActive(true);
             _gameScreen.SetActive(false);
             _gameOverScreen.SetActive(false);
