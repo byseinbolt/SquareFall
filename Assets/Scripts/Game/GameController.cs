@@ -1,3 +1,4 @@
+using System.Collections;
 using JetBrains.Annotations;
 using Square;
 using UnityEngine;
@@ -8,68 +9,27 @@ namespace Game
     public class GameController : MonoBehaviour
     {
         [SerializeField]
-        private GameObject _gameStartScreen;
-        
-        [SerializeField]
-        private GameObject _gameScreen;
-        
-        [SerializeField]
-        private GameObject _gameOverScreen;
-
-        [SerializeField]
         private SquareSpawner _squareSpawner;
 
         [SerializeField]
-        private float _delayBeforeShowGameOverScreen;
-
-        private bool _isGameOver;
-
+        private float _delayBeforeChangeScene;
+        
         private void Awake()
         {
             Application.targetFrameRate = 60;
-            
-            _gameStartScreen.SetActive(true);
-            _gameScreen.SetActive(false);
-            _gameOverScreen.SetActive(false);
-        }
-
-        [UsedImplicitly]
-        public void StartGame()
-        {
-            _gameStartScreen.SetActive(false);
-            _gameScreen.SetActive(true);
         }
         
         [UsedImplicitly]
-        public void RestartGame()
-        {
-            var sceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadSceneAsync(sceneName);
-        }
-
-        [UsedImplicitly]
         public void OnPlayerDied()
         {
-            _isGameOver = true;
             _squareSpawner.enabled = false;
+            StartCoroutine(ShowGameOver());
         }
-
-        private void Update()
+        
+        private IEnumerator ShowGameOver()
         {
-            if (_isGameOver)
-            {
-                _delayBeforeShowGameOverScreen -= Time.deltaTime;
-                if (_delayBeforeShowGameOverScreen <=0 )
-                {
-                    ShowGameOverScreen();
-                }
-            }
-        }
-
-        private void ShowGameOverScreen()
-        {
-            _gameScreen.SetActive(false);
-            _gameOverScreen.SetActive(true);
+            yield return new WaitForSeconds(_delayBeforeChangeScene);
+            SceneManager.LoadSceneAsync(GlobalConstants.GAME_OVER_SCENE);
         }
     }
 }

@@ -21,14 +21,7 @@ namespace Player
             
             if (other.CompareTag(GlobalConstants.ALLY_TAG))
             {
-                other.enabled = false;
-                other.transform.DOScale(Vector3.zero, _scaleChangeDuration)
-                    .OnComplete(() =>
-                    {
-                        _squareCollected.Invoke();
-                        Destroy(other.gameObject);
-                    });
-                
+                DestroyAllySquare(other);
             }
 
             if (other.CompareTag(GlobalConstants.ENEMY_TAG))
@@ -36,6 +29,17 @@ namespace Player
                 _playerDied.Invoke();
                 Destroy(other.gameObject);
             }
+        }
+
+        private void DestroyAllySquare(Collider2D other)
+        {
+            other.enabled = false;
+            other.transform.DOScale(Vector3.zero, _scaleChangeDuration)
+                .OnComplete(() =>
+                {
+                    _squareCollected.Invoke();
+                    Destroy(other.gameObject);
+                });
         }
     }
 }

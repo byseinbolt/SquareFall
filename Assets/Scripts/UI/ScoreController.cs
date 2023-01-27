@@ -1,3 +1,4 @@
+using System;
 using Game;
 using JetBrains.Annotations;
 using TMPro;
@@ -14,23 +15,22 @@ namespace UI
         [SerializeField]
         private int _scorePerSquare;
 
+        [Header("Animation")]
         [SerializeField]
         private float _scaleChangeDuration;
         
         [SerializeField]
         private float _scaleFactor;
 
+        [Header("Sound")]
         [SerializeField]
-        private AudioSource _bestScoreSound;
+        private AudioSource _changeScoreSound;
         
-        
-
         private int _currentScore;
-        private int _bestScore;
 
         private void Awake()
         {
-            _bestScore = PlayerPrefs.GetInt(GlobalConstants.BEST_SCORE);
+            _scoreLabel.text = "0";
         }
 
         [UsedImplicitly]
@@ -38,26 +38,20 @@ namespace UI
         {
             _currentScore += _scorePerSquare;
             _scoreLabel.text = _currentScore.ToString();
+            _changeScoreSound.Play();
+            ShowAddScoreAnimation();
+        }
+        
+        private void ShowAddScoreAnimation()
+        {
             _scoreLabel.transform.DOPunchScale(Vector3.one * _scaleFactor, _scaleChangeDuration, 0)
                 .OnComplete(() => _scoreLabel.transform.DOScale(Vector3.one, 0));
         }
 
-        public int GetBestScore()
+        private void OnDestroy()
         {
-            if (_currentScore>_bestScore)
-            {
-                _bestScore = _currentScore;
-                PlayerPrefs.SetInt(GlobalConstants.BEST_SCORE, _bestScore);
-                PlayerPrefs.Save();
-                _bestScoreSound.Play();
-            }
-
-            return _bestScore;
-        }
-
-        public int GetCurrentScore()
-        {
-            return _currentScore;
+            PlayerPrefs.SetInt(GlobalConstants.SCORE, _currentScore);
+            PlayerPrefs.Save();
         }
     }
 }
