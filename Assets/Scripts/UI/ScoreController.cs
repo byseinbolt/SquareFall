@@ -25,12 +25,19 @@ namespace UI
         [Header("Sound")]
         [SerializeField]
         private AudioSource _changeScoreSound;
+
+        [SerializeField]
+        private AudioSource _coinCollectedSound;
         
         private int _currentScore;
+        private int _currentCoinsCount;
+        private int _allCoins;
 
         private void Awake()
         {
             _scoreLabel.text = "0";
+            _allCoins = PlayerPrefs.GetInt(GlobalConstants.ALL_COINS);
+
         }
 
         [UsedImplicitly]
@@ -41,6 +48,13 @@ namespace UI
             _changeScoreSound.Play();
             ShowAddScoreAnimation();
         }
+
+        [UsedImplicitly]
+        public void AddCoins()
+        {
+            _currentCoinsCount += 1;
+            _coinCollectedSound.Play();
+        }
         
         private void ShowAddScoreAnimation()
         {
@@ -50,7 +64,10 @@ namespace UI
 
         private void OnDestroy()
         {
-            PlayerPrefs.SetInt(GlobalConstants.SCORE, _currentScore);
+            _allCoins += _currentCoinsCount;
+            PlayerPrefs.SetInt(GlobalConstants.ALL_COINS, _allCoins);
+            PlayerPrefs.SetInt(GlobalConstants.CURRENT_SCORE, _currentScore);
+            PlayerPrefs.SetInt(GlobalConstants.CURRENT_COINS, _currentCoinsCount);
             PlayerPrefs.Save();
         }
     }

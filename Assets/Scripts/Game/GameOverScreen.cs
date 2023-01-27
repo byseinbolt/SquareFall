@@ -13,6 +13,9 @@ namespace Game
 
         [SerializeField]
         private TextMeshProUGUI _bestScore;
+
+        [SerializeField]
+        private TextMeshProUGUI _coinsScore;
         
         [Header("Animation and Sound")]
         [SerializeField]
@@ -23,8 +26,9 @@ namespace Game
 
         private void Awake()
         {
-            var currentScore = PlayerPrefs.GetInt(GlobalConstants.SCORE);
+            var currentScore = PlayerPrefs.GetInt(GlobalConstants.CURRENT_SCORE);
             var bestScore = PlayerPrefs.GetInt(GlobalConstants.BEST_SCORE);
+            var currentCoins = PlayerPrefs.GetInt(GlobalConstants.CURRENT_COINS);
 
             if (currentScore>bestScore)
             {
@@ -35,6 +39,7 @@ namespace Game
 
             _currentScore.text = currentScore.ToString();
             _bestScore.text = $"BEST {bestScore.ToString()}";
+            _coinsScore.text = $"COINS {currentCoins.ToString()}";
         }
 
         // from restart button

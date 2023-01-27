@@ -22,5 +22,12 @@ namespace Game
 #endif
             Application.Quit();
         }
+
+        // from shop button
+        [UsedImplicitly]
+        public void ShowShopScreen()
+        {
+            SceneManager.LoadSceneAsync(GlobalConstants.SHOP_SCENE);
+        }
     }
 }
