@@ -7,31 +7,27 @@ namespace Square
     {
         [SerializeField]
         private SquareController[] _cubePrefabs;
-
-        [SerializeField]
-        private Transform _player;
-
+        
         [SerializeField]
         private float _minSpawnTime;
-    
+
         [SerializeField]
         private float _maxSpawnTime;
 
         [SerializeField]
         private Transform _leftSpawnBorder;
-    
+
         [SerializeField]
         private Transform _rightSpawnBorder;
-    
+
         [SerializeField]
         private Transform _leftTargetBorder;
-    
+
         [SerializeField]
         private Transform _rightTargetBorder;
-    
+
         private float _delayBeforeNextSpawn;
-    
-    
+        
         void Update()
         {
             if (_delayBeforeNextSpawn > 0)
@@ -39,7 +35,7 @@ namespace Square
                 _delayBeforeNextSpawn -= Time.deltaTime;
                 return;
             }
-        
+
             var square = SpawnRandomSquare();
             var targetDirection = GetTargetDirection(square);
             square.SetDirection(targetDirection);
@@ -53,6 +49,7 @@ namespace Square
             var targetDirection = targetPosition - square.transform.position;
             return targetDirection;
         }
+
         private SquareController SpawnRandomSquare()
         {
             var randomPrefabIndex = Random.Range(0, _cubePrefabs.Length);
@@ -67,12 +64,6 @@ namespace Square
         {
             var randomProgress = Random.Range(0f, 1f);
             return Vector3.Lerp(leftBorder.position, rightBorder.position, randomProgress);
-        }
-
-        private Vector3 GetDirectionToPlayerPosition(SquareController square)
-        {
-            var targetDirection = _player.position - square.transform.position;
-            return targetDirection;
         }
     }
 }

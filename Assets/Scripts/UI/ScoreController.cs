@@ -16,9 +16,8 @@ namespace UI
         private int _scorePerSquare;
 
         [Header("Animation")]
-        [SerializeField]
-        private float _scaleChangeDuration;
-        
+        [SerializeField] private float _scaleChangeDuration;
+
         [SerializeField]
         private float _scaleFactor;
 
@@ -28,7 +27,7 @@ namespace UI
 
         [SerializeField]
         private AudioSource _coinCollectedSound;
-        
+
         private int _currentScore;
         private int _currentCoinsCount;
         private int _allCoins;
@@ -55,7 +54,7 @@ namespace UI
             _currentCoinsCount += 1;
             _coinCollectedSound.Play();
         }
-        
+
         private void ShowAddScoreAnimation()
         {
             _scoreLabel.transform.DOPunchScale(Vector3.one * _scaleFactor, _scaleChangeDuration, 0)

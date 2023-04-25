@@ -8,10 +8,10 @@ namespace Square
     {
         [SerializeField]
         private float _rotationPower;
-        
+
         [SerializeField]
         private float _speed;
-        
+
         private Rigidbody2D _rigidbody;
         private Vector2 _direction;
 
@@ -19,11 +19,7 @@ namespace Square
         {
             _direction = direction;
         }
-
-        public void SetSpeed(float speed)
-        {
-            _speed = speed;
-        }
+        
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();

@@ -8,6 +8,8 @@ TagManager:
   - Ally
   - Boost
   - Coin
+  - Background
+  - Price
   layers:
   - Default
   - TransparentFX

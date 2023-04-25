@@ -16,7 +16,7 @@ namespace Game
 
         [SerializeField]
         private TextMeshProUGUI _coinsScore;
-        
+
         [Header("Animation and Sound")]
         [SerializeField]
         private float _newBestScoreAnimationDuration;
@@ -30,7 +30,7 @@ namespace Game
             var bestScore = PlayerPrefs.GetInt(GlobalConstants.BEST_SCORE);
             var currentCoins = PlayerPrefs.GetInt(GlobalConstants.CURRENT_COINS);
 
-            if (currentScore>bestScore)
+            if (currentScore > bestScore)
             {
                 bestScore = currentScore;
                 SetNewBestScore(bestScore);

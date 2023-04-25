@@ -6,7 +6,7 @@ namespace Player
     {
         [SerializeField]
         private Transform _leftBorder;
-        
+
         [SerializeField]
         private Transform _rightBorder;
 

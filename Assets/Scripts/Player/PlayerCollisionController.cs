@@ -9,7 +9,7 @@ namespace Player
     {
         [SerializeField]
         private UnityEvent _squareCollected;
-        
+
         [SerializeField]
         private UnityEvent _playerDied;
 
@@ -18,7 +18,7 @@ namespace Player
 
         [SerializeField]
         private float _scaleChangeDuration;
-        
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag(GlobalConstants.ALLY_TAG))
@@ -44,10 +44,7 @@ namespace Player
         {
             other.enabled = false;
             other.transform.DOScale(Vector3.zero, _scaleChangeDuration)
-                .OnComplete(() =>
-                {
-                    Destroy(other.gameObject);
-                });
+                .OnComplete(() => { Destroy(other.gameObject); });
         }
     }
 }

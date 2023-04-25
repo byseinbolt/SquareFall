@@ -13,19 +13,19 @@ namespace Game
 
         [SerializeField]
         private float _delayBeforeChangeScene;
-        
+
         private void Awake()
         {
             Application.targetFrameRate = 60;
         }
-        
+
         [UsedImplicitly]
         public void OnPlayerDied()
         {
             _squareSpawner.enabled = false;
             StartCoroutine(ShowGameOver());
         }
-        
+
         private IEnumerator ShowGameOver()
         {
             yield return new WaitForSeconds(_delayBeforeChangeScene);

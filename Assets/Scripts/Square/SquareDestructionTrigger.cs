@@ -7,6 +7,7 @@ namespace Square
     {
         [SerializeField]
         private float _scaleChangeDuration;
+
         private void OnTriggerEnter2D(Collider2D otherCollider)
         {
             otherCollider.enabled = false;
